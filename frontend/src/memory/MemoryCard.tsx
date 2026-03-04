@@ -24,10 +24,10 @@ function ShapeSVG({ shape }: { shape: Shape }) {
   const fill = 'white';
   return (
     <svg viewBox="0 0 100 100" width="80" height="80">
-      {shape === 'circle' && <circle cx="50" cy="50" r="38" fill={fill} />}
-      {shape === 'triangle' && <polygon points="50,10 90,90 10,90" fill={fill} />}
-      {shape === 'square' && <rect x="12" y="12" width="76" height="76" fill={fill} />}
-      {shape === 'star' && <polygon points={STAR_POINTS} fill={fill} />}
+      {shape === 'circle' && <circle cx="50" cy="50" r="38" fill={fill} stroke="#888" strokeWidth="3" />}
+      {shape === 'triangle' && <polygon points="50,10 90,90 10,90" fill={fill} stroke="#888" strokeWidth="3" />}
+      {shape === 'square' && <rect x="12" y="12" width="76" height="76" fill={fill} stroke="#888" strokeWidth="3" />}
+      {shape === 'star' && <polygon points={STAR_POINTS} fill={fill} stroke="#888" strokeWidth="3" />}
     </svg>
   );
 }
@@ -87,6 +87,7 @@ export default function MemoryCard({ color, shape, isFlipped, isMatched, onClick
             WebkitBackfaceVisibility: 'hidden',
             transform: 'rotateY(180deg)',
             background: color,
+            border: `3px solid #fff`,
             borderRadius: 12,
             display: 'flex',
             alignItems: 'center',
