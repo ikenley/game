@@ -11,16 +11,16 @@ import { ApiClientContextProvider } from "./hooks/ApiClientContext";
 import theme from "./theme";
 import config from "./config";
 import PrivateRoute from "./auth/PrivateRoute";
-import MainPage from "./main/MainPage";
+import MemoryPage from "./memory/MemoryPage";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "/game/pun",
+    path: "/game/memory",
     element: (
       <PrivateRoute>
-        <MainPage />
+        <MemoryPage />
       </PrivateRoute>
     ),
   },
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     path: "/game",
     element: (
       <PrivateRoute>
-        <MainPage />
+        <MemoryPage />
       </PrivateRoute>
     ),
   },
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <PrivateRoute>
-        <MainPage />
+        <MemoryPage />
       </PrivateRoute>
     ),
   },

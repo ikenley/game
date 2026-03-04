@@ -1,6 +1,6 @@
 {
-  "name": "ai-frontend",
-  "version": "0.2.0",
+  "name": "game-frontend",
+  "version": "0.0.1",
   "private": true,
   "homepage": "/game",
   "type": "module",

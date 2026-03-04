@@ -5,6 +5,7 @@ export default defineConfig(() => {
   return {
     server: {
       open: true,
+      port: 3000,
       proxy: {
         "/game/api": {
           target: "http://localhost:8090",

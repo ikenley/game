@@ -49,7 +49,7 @@ const Navbar = () => {
           <Link
             className="navbar-link"
             component={RouterLink}
-            to="/ai/pun"
+            to="/game/memory"
             sx={{
               ml: { xs: 0, md: 3 },
               my: 3,
@@ -57,31 +57,7 @@ const Navbar = () => {
               textDecoration: "none",
             }}
           >
-            Pun
-          </Link>
-          <Link
-            className="navbar-link"
-            component={RouterLink}
-            to="/ai/image"
-            sx={{ ml: 2, my: 3, display: "block", textDecoration: "none" }}
-          >
-            Image
-          </Link>
-          <Link
-            className="navbar-link"
-            component={RouterLink}
-            to="/ai/storybook"
-            sx={{ ml: 2, my: 3, display: "block", textDecoration: "none" }}
-          >
-            Storybook
-          </Link>
-          <Link
-            className="navbar-link"
-            component={RouterLink}
-            to="/ai/chat"
-            sx={{ ml: 2, my: 3, display: "block", textDecoration: "none" }}
-          >
-            Chat
+            Memory
           </Link>
         </Box>
         {user === null ? (

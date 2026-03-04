@@ -1,14 +1,13 @@
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Navbar from "../shared/Navbar";
-import PunPanel from "./PunPanel";
 
 // Based on:
 // https://github.com/mui/material-ui/tree/v5.14.17/docs/data/material/getting-started/templates/pricing
 
 const MainPage = () => {
   return (
-    <div className="main-page">
+    <div className="memory-page">
       <Navbar />
       <Container maxWidth="sm" component="main" sx={{ mt: 3 }}>
         <Typography
@@ -18,7 +17,7 @@ const MainPage = () => {
           color="text.primary"
           gutterBottom
         >
-          Pun GenerAItor
+          Games
         </Typography>
         <Typography
           variant="h5"
@@ -26,9 +25,8 @@ const MainPage = () => {
           color="text.secondary"
           component="p"
         >
-          A very simple AI client
+          A memory game. Coming soon.
         </Typography>
-        <PunPanel />
       </Container>
     </div>
   );
