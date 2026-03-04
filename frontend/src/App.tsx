@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -9,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { AuthContextProvider } from "./auth/AuthContext";
 import { ApiClientContextProvider } from "./hooks/ApiClientContext";
 import theme from "./theme";
-import config from "./config";
 import PrivateRoute from "./auth/PrivateRoute";
 import MemoryPage from "./memory/MemoryPage";
 
