@@ -107,7 +107,7 @@ export default function MemoryGame() {
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 140px)',
+          gridTemplateColumns: { xs: 'repeat(2, 140px)', sm: 'repeat(3, 140px)' },
           gap: '16px',
         }}
       >
