@@ -82,7 +82,7 @@ const Navbar = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem href="https://github.com/ikenley/ai-app" component="a">
+              <MenuItem href="https://github.com/ikenley/game" component="a">
                 <ListItemIcon>
                   <GitHubIcon fontSize="small" />
                 </ListItemIcon>
