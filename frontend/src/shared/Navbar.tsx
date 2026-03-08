@@ -59,6 +59,19 @@ const Navbar = () => {
           >
             Memory
           </Link>
+          <Link
+            className="navbar-link"
+            component={RouterLink}
+            to="/whack-a-mole"
+            sx={{
+              ml: 3,
+              my: 3,
+              display: "block",
+              textDecoration: "none",
+            }}
+          >
+            Whack-a-Mole
+          </Link>
         </Box>
         {user === null ? (
           <Skeleton />

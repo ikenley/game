@@ -10,10 +10,19 @@ import { ApiClientContextProvider } from "./hooks/ApiClientContext";
 import theme from "./theme";
 import PrivateRoute from "./auth/PrivateRoute";
 import MemoryPage from "./memory/MemoryPage";
+import WhackaMolePage from "./mole/WhackaMolePage";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
+  {
+    path: "/whack-a-mole",
+    element: (
+      <PrivateRoute>
+        <WhackaMolePage />
+      </PrivateRoute>
+    ),
+  },
   {
     path: "/game/memory",
     element: (
