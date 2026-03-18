@@ -11,10 +11,19 @@ import theme from "./theme";
 import PrivateRoute from "./auth/PrivateRoute";
 import MemoryPage from "./memory/MemoryPage";
 import WhackaMolePage from "./mole/WhackaMolePage";
+import AnimalPage from "./animal/AnimalPage";
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
+  {
+    path: "/game/animal",
+    element: (
+      <PrivateRoute>
+        <AnimalPage />
+      </PrivateRoute>
+    ),
+  },
   {
     path: "/whack-a-mole",
     element: (
