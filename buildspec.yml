@@ -46,4 +46,4 @@ phases:
       - aws s3 cp ./build/index.html s3://${SITE_S3_BUCKET_NAME}/${GIT_HASH}/${SITE_S3_KEY_PREFIX}/index.html --cache-control "no-cache, no-store"
       - aws ssm put-parameter --name $ACTIVE_VERSION_SSM_PARAMETER_NAME --value $GIT_HASH --type String --overwrite
       - KVS_ETAG=$(aws cloudfront-keyvaluestore describe-key-value-store --kvs-arn $KVS_ARN --query 'ETag' --output text)
-      - aws cloudfront-keyvaluestore put-key --kvs-arn $KVS_ARN --key active-version --value $GIT_HASH --if-match $KVS_ETAG
+      - aws cloudfront-keyvaluestore put-key --kvs-arn $KVS_ARN --key active_version --value $GIT_HASH --if-match $KVS_ETAG
