@@ -13,6 +13,7 @@ phases:
       - echo Build started on `date`
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - echo "IMAGE_TAG=$IMAGE_TAG"
+      - GIT_HASH=$IMAGE_TAG
       - echo "Building Lambda Docker image..."
       # - cd api
       # - LAMBDA_IMAGE_URI="$LAMBDA_REPOSITORY_URL:$IMAGE_TAG"
@@ -41,6 +42,8 @@ phases:
       # - aws lambda update-function-code --no-paginate --function-name $API_FUNCTION_NAME --image-uri $LAMBDA_IMAGE_URI
       # - aws lambda update-function-code --no-paginate --function-name $JOB_RUNNER_FUNCTION_NAME --image-uri $LAMBDA_IMAGE_URI
       - echo "Deploying the frontend static S3 site..."
-      - aws s3 rm s3://${SITE_S3_BUCKET_NAME}/${SITE_S3_KEY_PREFIX} --recursive
-      - aws s3 cp ./build/ s3://${SITE_S3_BUCKET_NAME}/${SITE_S3_KEY_PREFIX} --recursive
-      - aws cloudfront create-invalidation --distribution-id $CDN_DISTRIBUTION_ID --paths "/*"
+      - aws s3 cp ./build/ s3://${SITE_S3_BUCKET_NAME}/${GIT_HASH}/${SITE_S3_KEY_PREFIX}/ --recursive --exclude "index.html" --cache-control "public, max-age=31536000, immutable"
+      - aws s3 cp ./build/index.html s3://${SITE_S3_BUCKET_NAME}/${GIT_HASH}/${SITE_S3_KEY_PREFIX}/index.html --cache-control "no-cache, no-store"
+      - aws ssm put-parameter --name $ACTIVE_VERSION_SSM_PARAMETER_NAME --value $GIT_HASH --type String --overwrite
+      - KVS_ETAG=$(aws cloudfront-keyvaluestore describe-key-value-store --kvs-arn $KVS_ARN --query 'ETag' --output text)
+      - aws cloudfront-keyvaluestore put-key --kvs-arn $KVS_ARN --key active_version --value $GIT_HASH --if-match $KVS_ETAG
