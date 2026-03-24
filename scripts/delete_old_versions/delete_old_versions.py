@@ -3,9 +3,9 @@ import os
 
 import boto3
 
-from dotenv import load_dotenv
-
-load_dotenv()  # reads variables from a .env file and sets them in os.environ
+# Only use for local testing - in production, these should be set in the environment
+# from dotenv import load_dotenv
+# load_dotenv()  # reads variables from a .env file and sets them in os.environ
 
 s3 = boto3.client('s3')
 ssm = boto3.client('ssm')
