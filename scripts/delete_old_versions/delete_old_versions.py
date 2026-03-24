@@ -10,20 +10,20 @@ import boto3
 s3 = boto3.client('s3')
 ssm = boto3.client('ssm')
 
-BUCKET = os.getenv('SITE_BUCKET_NAME')
-ACTIVE_VERSION_SSM_PARAM = os.getenv('ACTIVE_VERSION_SSM_PARAM')
+SITE_S3_BUCKET_NAME = os.getenv('SITE_S3_BUCKET_NAME')
+ACTIVE_VERSION_SSM_PARAMETER_NAME = os.getenv('ACTIVE_VERSION_SSM_PARAMETER_NAME')
 KEEP_N = 3  # Number of recent versions to keep (excluding active)
 
 def get_all_versions():
     # List all top-level prefixes (git hashes)
-    response = s3.list_objects_v2(Bucket=BUCKET, Delimiter='/')
+    response = s3.list_objects_v2(Bucket=SITE_S3_BUCKET_NAME, Delimiter='/')
     prefixes = [p['Prefix'].rstrip('/') 
                 for p in response.get('CommonPrefixes', [])]
     return prefixes
 
 def get_version_metadata(prefix):
     response = s3.list_objects_v2(
-        Bucket=BUCKET,
+        Bucket=SITE_S3_BUCKET_NAME,
         Prefix=f"{prefix}/",
         MaxKeys=1
     )
@@ -34,10 +34,10 @@ def get_version_metadata(prefix):
 
 def delete_prefix(prefix):
     paginator = s3.get_paginator('list_objects_v2')
-    for page in paginator.paginate(Bucket=BUCKET, Prefix=f"{prefix}/"):
+    for page in paginator.paginate(Bucket=SITE_S3_BUCKET_NAME, Prefix=f"{prefix}/"):
         objects = [{'Key': obj['Key']} for obj in page.get('Contents', [])]
         if objects:
-            s3.delete_objects(Bucket=BUCKET, Delete={'Objects': objects})
+            s3.delete_objects(Bucket=SITE_S3_BUCKET_NAME, Delete={'Objects': objects})
 
 def cleanup():
     versions = get_all_versions()
@@ -52,7 +52,7 @@ def cleanup():
         print(f"  {v}: {timestamp}")
     
     # Keep the active version regardless of age
-    active = ssm.get_parameter(Name=ACTIVE_VERSION_SSM_PARAM)['Parameter']['Value']
+    active = ssm.get_parameter(Name=ACTIVE_VERSION_SSM_PARAMETER_NAME)['Parameter']['Value']
     print(f"Active version: {active}")
     
     to_delete = [v for v, _ in versioned[KEEP_N:] if v != active]
