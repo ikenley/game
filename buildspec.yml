@@ -48,4 +48,5 @@ phases:
       - KVS_ETAG=$(aws cloudfront-keyvaluestore describe-key-value-store --kvs-arn $KVS_ARN --query 'ETag' --output text)
       - aws cloudfront-keyvaluestore put-key --kvs-arn $KVS_ARN --key active_version --value $GIT_HASH --if-match $KVS_ETAG
       - echo "Deleting old versions from S3..."
+      - cd "$CWD"
       - python3 ./scripts/delete_old_versions/delete_old_versions.py
