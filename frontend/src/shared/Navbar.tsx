@@ -26,6 +26,7 @@ const NAV_LINKS = [
   { label: "Memory", to: "/game/memory" },
   { label: "Whack-a-Mole", to: "/whack-a-mole" },
   { label: "Animal", to: "/game/animal" },
+  { label: "Prize Egg", to: "/game/prize" },
 ];
 
 const Navbar = () => {

@@ -12,6 +12,7 @@ import PrivateRoute from "./auth/PrivateRoute";
 import MemoryPage from "./memory/MemoryPage";
 import WhackaMolePage from "./mole/WhackaMolePage";
 import AnimalPage from "./animal/AnimalPage";
+import PrizePage from "./prize/PrizePage";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,14 @@ const router = createBrowserRouter([
     element: (
       <PrivateRoute>
         <AnimalPage />
+      </PrivateRoute>
+    ),
+  },
+  {
+    path: "/game/prize",
+    element: (
+      <PrivateRoute>
+        <PrizePage />
       </PrivateRoute>
     ),
   },
