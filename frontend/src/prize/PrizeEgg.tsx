@@ -42,39 +42,43 @@ const PrizeEgg = () => {
     <Box
       sx={{
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         minHeight: "60vh",
-        gap: 3,
-        position: "relative",
       }}
     >
-      <div
-        className={`egg-wrapper ${isOpen ? "egg-open" : "egg-idle"}`}
-        onClick={handleClick}
-        role="button"
-        aria-label="Tap to open the prize egg"
-      >
-        <div className="egg-top" />
-        <div className="egg-bottom" />
-      </div>
-
-      {isOpen && prize && (
-        <Box
-          className="prize-reveal"
-          sx={{
-            textAlign: "center",
-          }}
+      {/* Positioning anchor sized to the egg — children stack on top of each other */}
+      <Box sx={{ position: "relative", width: 192, height: 232 }}>
+        <div
+          className={`egg-wrapper ${isOpen ? "egg-open" : "egg-idle"}`}
+          onClick={handleClick}
+          role="button"
+          aria-label="Tap to open the prize egg"
+          style={{ position: "absolute", top: 0, left: 0 }}
         >
-          <Typography sx={{ fontSize: "6rem", lineHeight: 1 }}>
-            {prize.icon}
-          </Typography>
-          <Typography variant="h4" sx={{ mt: 1, fontWeight: "bold" }}>
-            {prize.name}
-          </Typography>
-        </Box>
-      )}
+          <div className="egg-top" />
+          <div className="egg-bottom" />
+        </div>
+
+        {isOpen && prize && (
+          <Box
+            className="prize-reveal"
+            sx={{
+              position: "absolute",
+              top: "85px",
+              textAlign: "center",
+              width: "100%",
+            }}
+          >
+            <Typography sx={{ fontSize: "6rem", lineHeight: 1 }}>
+              {prize.icon}
+            </Typography>
+            <Typography variant="h4" sx={{ mt: 1, fontWeight: "bold" }}>
+              {prize.name}
+            </Typography>
+          </Box>
+        )}
+      </Box>
     </Box>
   );
 };
