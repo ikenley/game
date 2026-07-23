@@ -11,9 +11,9 @@ interface Prize {
 }
 
 const prizes: Prize[] = [
-  { id: "sticker", name: "Sticker", icon: "💟", probability: 0.5 },
-  { id: "egg", name: "Egg", icon: "🥚", probability: 0.3 },
-  { id: "book", name: "Book", icon: "📕", probability: 0.2 },
+  { id: "sticker", name: "Sticker", icon: "💟", probability: 0.2 },
+  { id: "egg", name: "Egg", icon: "🥚", probability: 0.2 },
+  { id: "book", name: "Book", icon: "📕", probability: 0.6 },
 ];
 
 function pickPrize(): Prize {
